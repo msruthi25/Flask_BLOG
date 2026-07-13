@@ -1,6 +1,3 @@
-# Treat Python files as Python
-*.py linguist-language=Python
-
-# Exclude frontend assets from language statistics
+# Ignore frontend files when GitHub calculates language statistics
 frontend_django/templates/** linguist-vendored
 frontend_django/static/** linguist-vendored
