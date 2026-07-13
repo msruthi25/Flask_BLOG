@@ -1,6 +1,13 @@
+# pyrefly: ignore [missing-import]
+import os
+import sys
+
+# Enable absolute package imports when running this file directly as a script
+if __name__ == "__main__" and not __package__:
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from flask import Flask
 from app.extensions import *
-import os
 
 app=Flask(__name__)
 
