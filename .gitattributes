@@ -1,3 +1,6 @@
-# Ignore frontend files when GitHub calculates language statistics
-frontend_django/templates/** linguist-vendored
-frontend_django/static/** linguist-vendored
+# Don't count Flask templates and static files
+app/templates/** linguist-vendored
+app/static/** linguist-vendored
+
+# Don't count the virtual environment if it's in the repository
+venv/** linguist-vendored
