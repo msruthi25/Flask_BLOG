@@ -1,0 +1,67 @@
+<!-- ===== Add Blog Form ===== -->
+
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>My Tech Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhJjhx1ugzVz2VFgIMLX0NN11aipVmAyyCVw&s" alt="My Tech Blog Logo">
+                <span>My Tech Blog</span>
+            </a>            
+            <nav>
+                <ul>
+                    
+                    {% for i in category %} 
+                    <li><a href="#{{ i.name }}">{{i.name}}</a></li> 
+                    {% endfor %}                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+        <div class="add-blog-container">
+        <a href="{{ url_for('home') }}" class="add-blog-btn">View Blog</a>
+    </div>
+    {% if request.args.get('success') == 'true' %}
+    <div class="signup-banner">
+        Blog post created successfully!
+    </div>
+    {% endif %}
+<body>
+<section class="add-blog-form-section">       
+        <h2>Create Your Blog</h2>
+        <form class="add-blog-form" action="/addBlog" method="POST">
+            
+            <label for="blog-title">Title</label>
+            <input type="text" id="blog-title" name="title" placeholder="Enter blog title" required>
+            <label for="blog-category">Category</label>
+            <select id="blog-category" name="category_data" required>
+                <option value="" disabled selected>Select category</option>
+                <option value="Windows">Windows</option>
+                <option value="Linux">Linux</option>
+                <option value="Software">Software</option>
+                <option value="Companies">Companies</option>
+            </select>
+            <label for="blog-snippet">Snippet</label>
+            <textarea id="blog-snippet" name="snippet" rows="3" placeholder="Write a short snippet..." required></textarea>
+            
+            <label for="blog-content">Full Content</label>
+            <textarea id="blog-content" name="full_content" rows="8" placeholder="Write your full blog here..." required></textarea>
+            
+            <label for="blog-image">Image URL</label>
+            <input type="url" id="blog-image" name="img_url" placeholder="Enter image URL (optional)">
+            
+        
+            
+            <label for="blog-date">Created Date</label>
+            <input type="date" id="blog-date" name="created_date" required>
+            
+            <button type="submit">Submit Blog</button>
+        </form>
+    </section>
+</body>
+    
+</html>

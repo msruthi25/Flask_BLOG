@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% for post in post %} {{ post.title }} - My Tech Blog {% endfor %}  </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='posts.css') }}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhJjhx1ugzVz2VFgIMLX0NN11aipVmAyyCVw&s" alt="My Tech Blog Logo">
+                <span>My Tech Blog</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    {% for i in category %} 
+                    <li><a href="#{{ i.name }}">{{i.name}}</a></li> 
+                    {% endfor %}                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Main Post Section ===== -->
+    <main class="post-detail">
+        <article>
+          {% for post in post %}
+                <h2 class="post-title">{{ post.title }}</h2>
+                <div class="post-info">
+                    <span class="post-meta"><strong>{{ post.category_data }}</strong></span>
+                    <span class="post-date">Posted on <strong>{{ post.created_date }}</strong></span>
+                </div>
+                {% if post.img_url %}
+                    <img src="{{ post.img_url }}" alt="{{ post.title }}" class="post-image">
+                {% endif %}
+                
+                <div class="post-content">
+                    {{ post.full_content | safe }}
+                </div>
+           {% endfor %}  
+        </article>
+    </main>
+
+</body>
+</html>

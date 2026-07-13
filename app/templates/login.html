@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - My Tech Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <a  class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhJjhx1ugzVz2VFgIMLX0NN11aipVmAyyCVw&s" alt="My Tech Blog Logo">
+                <span>My Tech Blog</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Login / Signup Tabs -->
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                 {% if error == "true"%}
+                    <div class="error-banner">Login Unsuccessful</div>
+                  {% endif %}
+                {% if signup =="true" %}
+                    <div class="signup-banner">Account Created ! Login to your Account</div>
+                  {% endif %}
+                <!-- Radio buttons for tabs -->
+                <input type="radio" name="tab" id="login-tab" checked>
+                <input type="radio" name="tab" id="signup-tab" >
+
+                <div class="tab-labels">
+                    <label for="login-tab" class="tab-btn">Login</label>
+                    <label for="signup-tab" class="tab-btn" >Create Account</label>
+                </div>
+
+                <div class="tab-forms">
+                    <!-- Login Form -->
+                    <form class="auth-form login-form" action="/login" method="POST">
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="auth-form signup-form" action="/signup" method="POST">
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

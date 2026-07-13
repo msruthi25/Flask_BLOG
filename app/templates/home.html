@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Tech Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhJjhx1ugzVz2VFgIMLX0NN11aipVmAyyCVw&s" alt="My Tech Blog Logo">
+                <span>My Tech Blog</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    {% for i in category %} 
+                    <li><a href="#{{ i.name }}">{{i.name}}</a></li> 
+                    {% endfor %}                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="add-blog-container">
+        <a href="{{ url_for('addBlog') }}" class="add-blog-btn">+ Create Your Blog</a>
+    </div>
+    <!--Category Section-->
+    <main>
+        {% for cat in category %}
+        <section id="{{cat.name}}" class="category-section">
+           <h2>{{ cat.name }}</h2>
+           <div class="posts-container">
+             {% for p in post  if p.category_data == cat.name %}
+                <div class="post-card">
+                        <img src="{{ p.img_url }}" alt="{{ p.title }}">
+                        <h3>{{ p.title }}</h3>
+                        <p>{{ p.snippet }}</p>
+                        <a href="/posts/{{p.category_data}}/{{p.title| replace(' ', '-') }}">Read more</a>
+                </div>
+             {% endfor %}
+           </div>
+        </section>
+        {% endfor %}
+    </main>
+
+
+</body>
+</html>
