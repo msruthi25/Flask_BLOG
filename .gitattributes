@@ -1,6 +1,6 @@
-# Don't count Flask templates and static files
+# Ignore virtual environment
+venv/** linguist-vendored
+
+# Ignore Flask frontend files from language statistics
 app/templates/** linguist-vendored
 app/static/** linguist-vendored
-
-# Don't count the virtual environment if it's in the repository
-venv/** linguist-vendored
